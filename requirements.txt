@@ -1,1 +1,2 @@
 django>=1.5.1
+easypost>=2.0.16
