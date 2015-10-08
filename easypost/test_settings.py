@@ -16,7 +16,7 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
 
-SECRET_KEY = 'test-key'
+EASYPOST_SECRET_KEY = 'test-key'
 
 ROOT_URLCONF = 'easypost.urls'
 
