@@ -1,5 +1,7 @@
 # django-easypost
 
+A django wrapper for the python easypost library
+
 ## Usage
 
 
