@@ -25,6 +25,8 @@ setup(
     url='https://github.com/davejmac/django-easypost',
     packages=[
         'easypost',
+        'celery',
+        'flower',
     ],
     include_package_data=True,
     install_requires=[
