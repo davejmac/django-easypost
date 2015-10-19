@@ -144,7 +144,7 @@ class Shipment(models.Model):
     rate = models.DecimalField(decimal_places=2, max_digits=10, help_text=_('Shipping cost'), null=True, blank=True)
 
     created_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
-    created_by = models.ForeignKey('accounts.User', on_delete=models.SET_NULL, null=True, blank=True,
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True,
                                    related_name="shipments")
 
     def __unicode__(self):
@@ -336,7 +336,7 @@ class Label(models.Model):
     label_zpl_url = models.CharField(max_length=200, blank=True)
 
     created_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
-    created_by = models.ForeignKey('accounts.User', on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
     def request_label_file(self, format='pdf', commit=False):
         """
@@ -458,7 +458,7 @@ class Parcel(models.Model):
     predefined_package = models.CharField(max_length=50, blank=True, help_text=_("Predefined package type"), choices=_PREDEFINED_PACKAGE_CHOICES)
 
     created_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
-    created_by = models.ForeignKey('accounts.User', on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __unicode__(self):
         if self.predefined_package:
@@ -508,7 +508,7 @@ class ShipmentTrackingHistory(models.Model):
     update_time = models.DateTimeField(help_text="The datetime given on the tracking update from EasyPost")
 
     created_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
-    created_by = models.ForeignKey('accounts.User', on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __unicode__(self):
         return u'{0}'.format(self.message)
