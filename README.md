@@ -5,16 +5,16 @@ A django wrapper for the python easypost library
 ## Usage
 
 The package requires an easypost api key. Easypost supplies both a live key and a test key which can be added to the
-site's `settings.py` like
+site's `settings.py` like the following which distinguishes between environments:
 
 ```
 #############
 # EASYPOST  #
 #############
 if PRODUCTION:
-    EASYPOST_API_KEY = 'kegq5UJwqL7cjVL2KfyCeQ'
+    EASYPOST_API_KEY = 'uiop4567890'
 else:
-    EASYPOST_API_KEY = 'dBrLHju2TiCHeVTdzSf4KQ'
+    EASYPOST_API_KEY = 'qwerty12345'
 ```
 
 ## Testing
