@@ -5,9 +5,8 @@ from django.conf import settings
 
 import json
 
-from accounts.factories import UserFactory
 from easypost.models import Shipment
-from .factories import AddressFactory, ParcelFactory, ShipmentFactory, LabelFactory
+from .factories import UserFactory, AddressFactory, ParcelFactory, ShipmentFactory, LabelFactory
 
 
 class AddressTest(TestCase):

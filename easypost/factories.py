@@ -8,6 +8,21 @@ import easypost
 easypost.api_key = settings.EASYPOST_API_KEY
 
 
+class UserFactory(DjangoModelFactory):
+
+    class Meta:
+        model = settings.AUTH_USER_MODEL
+
+    first_name = factory.Sequence(lambda n: 'User%d' % n)
+    last_name = 'LastName'
+    email = factory.LazyAttribute(lambda obj: '%s@example.com' % obj.first_name)
+
+    @factory.post_generation
+    def setuser_password(obj, create, extracted, **kwargs):
+        obj.set_password('password')
+        obj.save()
+
+
 class AddressFactory(DjangoModelFactory):
 
     class Meta:
@@ -32,7 +47,7 @@ class ShipmentFactory(DjangoModelFactory):
     to_address = factory.SubFactory('easypost.factories.AddressFactory')
     from_address = factory.SubFactory('easypost.factories.AddressFactory')
 
-    created_by = factory.SubFactory('accounts.factories.UserFactory')
+    created_by = factory.SubFactory('easypost.factories.UserFactory')
 
 
 class ShipmentItemFactory(DjangoModelFactory):
@@ -72,7 +87,7 @@ class ParcelFactory(DjangoModelFactory):
     predefined_package = 'FlatRateEnvelope'
     weight = factory.fuzzy.FuzzyFloat(1.0, 20.0)
 
-    created_by = factory.SubFactory('accounts.factories.UserFactory')
+    created_by = factory.SubFactory('easypost.factories.UserFactory')
 
     @factory.lazy_attribute
     def easypost_id(self):
@@ -89,4 +104,4 @@ class ShipmentTrackingHistoryFactory(DjangoModelFactory):
     message = factory.Faker('sentence', nb_words=20)
     update_time = factory.fuzzy.FuzzyDateTime(timezone.now())
 
-    created_by = factory.SubFactory('accounts.factories.UserFactory')
+    created_by = factory.SubFactory('easypost.factories.UserFactory')
