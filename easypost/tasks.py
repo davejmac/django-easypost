@@ -58,7 +58,7 @@ def update_refund_statuses():
     shipments = Shipment.objects.filter(refund_status=Shipment.RefundStatus.SUBMITTED)
     for shipment in shipments:
         try:
-            easypost_shipment = easypost.Shipment.retrieve(id=shipment.easypost_id, api_key=settings.EASYPOST_SECRET_KEY)
+            easypost_shipment = easypost.Shipment.retrieve(id=shipment.easypost_id, api_key=settings.EASYPOST_API_KEY)
         except Exception, e:
             logger.exception(e)
         else:
